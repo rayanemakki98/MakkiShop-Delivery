@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/news.css') }}" type="text/css">
+{% endblock %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+    <h1>Nouvelles et Mises à Jour</h1>
+    {% for i in req_news %}
+        <div class="news">
+            <h2 id="{{ i.title }}">{{ i.title }}</h2>
+            <hr>
+            <h4>{{ i.subtitle }}</h4>
+            <p>{{ i.details }}</p>
+        </div>
+    {% endfor %}
+
+    {% block js %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/news.js') }}"></script>
+    {% endblock %}
+
+{% endblock %}

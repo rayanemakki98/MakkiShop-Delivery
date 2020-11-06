@@ -1,0 +1,154 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" type="text/css">
+{% endblock %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+
+    <div class="home-header">
+        <div class="home-header-title">
+            <a href="{{ url_for('mainbp.home') }}">
+                <h1>Makki Shop Delivery</h1>
+            </a>
+            <p>Livraison D'épicerie et de Magasins Divers</p>
+        </div>
+    </div>
+
+    <div class="body-div">
+        <div class="body-left">
+            <a onclick="document.getElementById('shop').style.display='block'">Magasiner ►</a>
+            <div class="main-categories">
+                {% for i in main_categories.keys() %}
+                    <div class="categ">
+                        <a href="#">
+                            <img src="{{ url_for('static', filename=main_categories[i][1]) }}" alt="{{ i }}">
+                            <p>{{ main_categories[i][0] }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <br><br>
+            <div class="connection">
+            <a onclick="document.getElementById('login').style.display='block'">Accéder à Mon Profile ►</a>
+            <a onclick="document.getElementById('signup').style.display='block'">Créer Un Nouveau Compte</a>
+            </div>
+        </div>
+
+        <hr id="vertical">
+
+        <div class="body-right">
+            <div class="body-right-intro">
+                <h3>Makki Shop Delivery</h3>
+                <p>Conçu par RKTEAM Enterprises, Makki Shop Delivery est un logiciel de livraison pour les magasins
+                    de tous les types.&nbsp;<a href="{{ url_for('mainbp.about') }}">Voir Plus</a>
+                </p>
+            </div>
+            <br><br>
+            <hr>
+            <br><br>
+            <div class="body-right-news">
+                <h1>Nouvelles et Mises à Jour</h1>
+                {% for i in req_news %}
+                    <h4 class="title">{{ i.title }}</h4>
+                    <hr>
+                    <div class="new-body">
+                        <h6>{{ i.subtitle }}</h6>
+                        <p>{{ i.details }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="mySideContact" class="sidenav-contact">
+        <a id="tel" href="tel:5819843613">+1(581) 984-3613&nbsp;&nbsp;&nbsp;<i class="fas fa-phone-square"></i></a>
+        <a id="mail" href="mailto:rayanemakki98@gmail.com">rayanemakki98@gmail.com&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a target="_blank" id="adresse" href="https://goo.gl/maps/irEFLYbFf4RSm2gc6">adresse&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-search-location"></i>
+        </a>
+    </div>
+
+    <div id="login" class="select-auth-modal">
+        <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">
+            &times;
+        </span>
+
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <img src="{{ url_for('static', filename='img/login.png') }}" alt="login-icon" class="photo">
+            </div>
+
+            <div class="container">
+                <a href="{{ url_for('entbp.login') }}">Entreprise</a>
+                <a href="#">Client</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="signup" class="select-auth-modal">
+        <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">
+            &times;
+        </span>
+
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <img src="{{ url_for('static', filename='img/signup.png') }}" alt="signup-icon" class="photo">
+            </div>
+
+            <div class="container">
+                <a href="{{ url_for('entbp.signup') }}">Entreprise</a>
+                <a href="#">Client</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="sm" class="select-auth-modal">
+        <span onclick="document.getElementById('sm').style.display='none'" class="close" title="Close Modal">
+            &times;
+        </span>
+
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <img src="{{ url_for('static', filename='img/sm_home.png') }}" alt="signup-icon" class="photo">
+            </div>
+
+            <div class="container">
+                <a href="https://www.facebook.com/rayanemak12/"><i class="fab fa-facebook-square"></i></a>
+                <a href="#insta"><i class="fab fa-instagram"></i></a>
+                <a href="#youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-messenger"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="shop" class="select-auth-modal">
+        <span onclick="document.getElementById('shop').style.display='none'" class="close" title="Close Modal">
+            &times;
+        </span>
+
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <img src="{{ url_for('static', filename='img/shop_home.png') }}" alt="shop-icon" class="photo">
+            </div>
+
+            <div class="container">
+                <a href="#">Restaurants</a>
+                <a href="#">Super Market Makki</a>
+                <a href="#">Malls</a>
+                <a href="#">Mode et Vêtements</a>
+                <a href="#">Electronique et Technologie</a>
+            </div>
+        </div>
+    </div>
+
+    {% block js %}
+        <script src="{{ url_for('static', filename='js/home.js') }}" type="text/javascript"></script>
+    {% endblock %}
+
+{% endblock %}

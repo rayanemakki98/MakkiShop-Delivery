@@ -1,0 +1,15 @@
+.news {
+  background-color: rgba(245, 245, 245, 0.7);
+  color: black;
+  z-index: 2;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

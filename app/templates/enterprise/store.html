@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/store.css') }}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    {% if type == current_user.ent_type %}
+        <h1>{{ current_user.ent_type }}</h1>
+        <h2>{{ current_user.ent_name }}</h2>
+
+        <form method="post" action="">
+            {{ ap.name(placeholder='Name...') }}
+            <br>
+            {{ ap.categorie(placeholder='Categorie') }}
+            <br>
+            {{ ap.barcode(placeholder='barcode') }}
+            <br>
+            {{ ap.quantity(placeholder='quantity') }}
+            <br>
+            {{ ap.ent_type(value=current_user.ent_type) }}
+            <br>
+            {{ ap.submit }}
+        </form>
+
+        <table>
+        <tr>
+            <th>Produit</th>
+            <th>Categorie</th>
+            <th>Barcode</th>
+            <th>Quantité</th>
+        </tr>
+        {% for i in product %}
+            <tr>
+                <th>{{ i.name }}</th>
+                <th>{{ i.categorie }}</th>
+                <th>{{ i.barcode }}</th>
+                <th>{{ i.quantity }}</th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if type == 'Market' %}
+        <p>Kol 5ara</p>
+    {% endif %}
+{% endblock %}

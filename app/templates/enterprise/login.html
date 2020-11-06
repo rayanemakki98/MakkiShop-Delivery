@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="overlay">
+<form action="" method="post">
+   <div class="con">
+        <header class="head-form">
+           <h2>Se Connecter</h2>
+           <p>Connectez-vous avec votre adresse courriel et votre mot de passe</p>
+        </header>
+        <br>
+        <div class="field-set">
+            {{ form.ent_email(class="form-input", placeholder="Email...", autofocus="True") }}
+            <br>
+            <br>
+            <p id="eye1">show password</p>
+            {{ form.ent_password(class="form-input", id="pwd1", placeholder="Password...") }}
+            <br>
+            {{ form.submit(class="log-in") }}
+        </div>
+
+       <div class="other">
+          <button class="btn submits frgt-pass">Mot de Passe Oublié?</button>
+          <button class="btn submits sign-up">Devenez Membre
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+       </div>
+   </div>
+</form>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+    <div class="header">
+      <h1>Bonjour, {{ user.ent_director }}!</h1>
+      <p>{{ user.ent_name }}</p>
+        <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="avatar">
+    </div>
+
+    <div class="navbar">
+      <a href="{{ url_for('entbp.myStore', name=current_user.ent_name, pays=current_user.ent_country,
+              ville=current_user.ent_city, type=current_user.ent_type) }}">Mon Magasin En ligne</a>
+      <a style="cursor: pointer;" onclick="openSearch()">Ajouter Un Produit</a>
+        <a href="#">
+            Ma Carte Shop
+        </a>
+      <a href="#">Réglages</a>
+        <a href="{{ url_for('mainbp.logout') }}">Fermer La Session</a>
+      <a href="#" class="right">Mes Commandes</a>
+    </div>
+
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
+        <div class="overlay-content">
+            <form action="" method="post">
+                <input list="hname">
+                <datalist id="hname">
+                    {% for i in hospitalsInData %}
+                        <option value="{{ i.hosp_name }}">{{ i.hosp_name }}</option>
+                    {% endfor %}
+                </datalist>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="side">
+        <h2>Mes Produits</h2>
+        <a onclick="openSearch()">Ajouter Un Produit</a>
+        <div class="fakeimg" style="height:200px;">
+            <div class="overlay-hosps">
+                <div class="hosps">
+            <h2>Mon Historique</h2>
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for product.." title="Type in a name">
+
+            <ul id="myUL">
+              {% for i in hospi %}
+                    <li><a href="#">{{ i.myHospital }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+            </div>
+        </div>
+        <p>Ajouter vos produits pour vos clients.</p><br><br>
+          <button class="accordion">Mes Commandes Complétées</button>
+        <div class="panel" style="height:60px;">commandes ici!</div><br>
+          <button class="accordion">Commandes En Cours</button>
+          <div class="panel" style="height:60px;">commandes ici!</div><br>
+          <button class="accordion">Total de La Journée</button>
+          <div class="panel" style="height:60px;">Details ici!</div>
+      </div>
+      <div class="main">
+        <h2>Historique de Commandes</h2>
+        <h5>Journée Courante: date</h5>
+        <div class="historic">
+            <h2>Historique</h2>
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="chercher une commande par nom..." title="Type in a name">
+
+            <ul id="myUL">
+              <li><a href="#">Rania Roumi, Date, Montant, Commande</a></li>
+              <li><a href="#">Mohamad Makki, Date, Montant, Commande</a></li>
+
+              <li><a href="#">Jad, Date, Montant, Commande</a></li>
+              <li><a href="#">Ahmade Sebline, Date, Montant, Commande</a></li>
+                <li><a href="#">Rania Roumi, Date, Montant, Commande</a></li>
+              <li><a href="#">Jaafar Safawi, Date, Montant, Commande</a></li>
+
+              <li><a href="#">Mostafa Reslan, Date, Montant, Commande</a></li>
+              <li><a href="#">Ahmad Jammal, Date, Montant, Commande</a></li>
+
+              <li><a href="#">Calvin</a></li>
+              <li><a href="#">Christina</a></li>
+              <li><a href="#">Cindy</a></li>
+            </ul>
+        </div>
+        <a href="">Voir Tous l'historique ►</a>
+        <br><br>
+        <h2>Trouvez Tout Ici! Liens Rapides</h2>
+        <div class="findall">
+            <a href="#">Sommaire de la Journée</a>
+            <a href="#">Sommaire de la semaine</a>
+            <a href="#">Sommaire du mois</a>
+            <a href="#">Demandez Une carte Shop</a>
+            <a href="#">Mon Magasin</a>
+        </div>
+        <p>On a une Réponse à Tout!</p>
+      </div>
+    </div>
+
+    <div class="footer" style="color: black">
+      <h2 style="color: black;">Des Questions? Besoin D'aide?</h2>
+    </div>
+
+    {% block js %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    {% endblock %}
+{% endblock %}

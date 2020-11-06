@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <title>{{ title }}</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Logiciel de Livraison">
+        <meta name="author" content="Rayane Youssef Makki">
+        <meta http-equiv="refresh" content="120">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Style Links -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" type="text/css">
+        {% block css %}{% endblock %}
+        <!-- JS Links -->
+        <script src="https://kit.fontawesome.com/593e1fe1bd.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body style="background-image: url({{ url_for('static', filename=bg) }}); background-size: cover;">
+        {% block content %}{% endblock %}
+
+        <div class="navbar-end">
+            <a href="{{ url_for('mainbp.home') }}">Accueil</a>
+            {% if not current_user.is_authenticated %}
+                <a onclick="document.getElementById('login').style.display='block'">Se Connecter</a>
+                <a onclick="document.getElementById('signup').style.display='block'">Créer Un Compte</a>
+            {% endif %}
+
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('mainbp.logout') }}">Fermer La Session</a>
+            {% endif %}
+            <a onclick="document.getElementById('sm').style.display='block'">Réseaux Sociaux</a>
+        </div>
+
+
+        <div id="login" class="select-auth-modal">
+            <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">
+                &times;
+            </span>
+
+            <div class="modal-content animate">
+                <div class="imgcontainer">
+                    <img src="{{ url_for('static', filename='img/login.png') }}" alt="login-icon" class="photo">
+                </div>
+
+                <div class="container">
+                    <a href="{{ url_for('entbp.login') }}">Entreprise</a>
+                    <a href="#">Client</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="signup" class="select-auth-modal">
+            <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">
+                &times;
+            </span>
+
+            <div class="modal-content animate">
+                <div class="imgcontainer">
+                    <img src="{{ url_for('static', filename='img/signup.png') }}" alt="signup-icon" class="photo">
+                </div>
+
+                <div class="container">
+                    <a href="{{ url_for('entbp.signup') }}">Entreprise</a>
+                    <a href="#">Client</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="sm" class="select-auth-modal">
+            <span onclick="document.getElementById('sm').style.display='none'" class="close" title="Close Modal">
+                &times;
+            </span>
+
+            <div class="modal-content animate">
+                <div class="imgcontainer">
+                    <img src="{{ url_for('static', filename='img/sm_home.png') }}" alt="signup-icon" class="photo">
+                </div>
+
+                <div class="container">
+                    <a href="https://www.facebook.com/rayanemak12/"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#insta"><i class="fab fa-instagram"></i></a>
+                    <a href="#youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="#twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-messenger"></i></a>
+                </div>
+            </div>
+        </div>
+        {% block js %}{% endblock %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/layout.js') }}"></script>
+    </body>
+
+</html>

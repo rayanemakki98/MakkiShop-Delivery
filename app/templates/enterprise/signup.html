@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="overlay">
+<form action="" method="post">
+   <div class="con">
+        <header class="head-form">
+           <h2>Créer Un Compte</h2>
+           <p>Veuillez Remplir les Champs ci-dessous</p>
+        </header>
+        <br>
+        <div class="field-set">
+            {{ form.ent_name(class="form-input", placeholder="Enterprise...", autofocus="True") }}
+            <br>
+            {{ form.ent_type(class="form-input", autofocus="True") }}
+            <br>
+            {{ form.ent_director(class="form-input", placeholder="Gérant...", autofocus="True") }}
+            <br>
+            {{ form.ent_country(class="form-input", autofocus="True") }}
+            <br>
+            {{ form.ent_city(class="form-input", placeholder="Ville...", autofocus="True") }}
+            <br>
+            {{ form.ent_address(class="form-input", placeholder="Adresse...", autofocus="True") }}
+            <br>
+            {{ form.ent_email(class="form-input", placeholder="Email...", autofocus="True") }}
+            <br>
+            {{ form.ent_phone(class="form-input", placeholder="phone...", autofocus="True") }}
+            <br>
+            <br>
+            <p id="eye1">show password</p>
+            {{ form.ent_password(class="form-input", id="pwd1", placeholder="Password...") }}
+            <br>
+            <p id="eye2">show password</p>
+            {{ form.confirm_password(class="form-input", id="pwd1", placeholder="Password...") }}
+            <br>
+            {{ form.submit(class="log-in") }}
+        </div>
+
+       <div class="other">
+          <button class="btn submits frgt-pass">Mot de Passe Oublié?</button>
+          <button class="btn submits sign-up">Se Connecter
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+       </div>
+   </div>
+</form>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{% endblock %}

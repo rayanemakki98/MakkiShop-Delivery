@@ -1,0 +1,20 @@
+<header>
+    <nav class="navbar-top">
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('mainbp.home') }}">Accueil</a>
+            <a href="{{ url_for('mainbp.contact') }}">Nous Contacter</a>
+            <a href="{{ url_for('mainbp.about') }}">A Propos</a>
+            <a href="{{ url_for('mainbp.faq') }}">FAQ</a>
+            <a href="{{ url_for('mainbp.news', page='allnews') }}">Nouvelles</a>
+            <a href={{ url_for('mainbp.logout') }}>Fermer La Session</a>
+        {% else %}
+            <a href="{{ url_for('mainbp.home') }}">Accueil</a>
+            <a onclick="document.getElementById('login').style.display='block'">Se Connecter</a>
+            <a onclick="document.getElementById('signup').style.display='block'">Créer Un Compte</a>
+            <a href="{{ url_for('mainbp.contact') }}">Nous Contacter</a>
+            <a href="{{ url_for('mainbp.about') }}">A Propos</a>
+            <a href="{{ url_for('mainbp.faq') }}">FAQ</a>
+            <a href="{{ url_for('mainbp.news', page='allnews') }}">Nouvelles</a>
+        {% endif %}
+    </nav>
+</header>

@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}" type="text/css">
+{% endblock %}
+
+{% include 'nav.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="header" style="text-align: center">
+            <h2>Nous Contacter</h2>
+            <p>Laisser Nous Un Message</p>
+        </div>
+
+        <div class="contact-way">
+            {% for i in contacts.keys() %}
+                <a href="{{ contacts[i][0] }}">{{ i }}<br>{{ contacts[i][1] }}</a>
+            {% endfor %}
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="column">
+                <img alt="contact" src="{{ url_for('static', filename='img/contact.jpg') }}" style="width: 100%;
+                height: 500px;border-radius: 5px;">
+            </div>
+
+            <div class="column">
+                <form action="" method="post" autocomplete="off">
+                    {{ form.name.label }}
+                    {{ form.name(autocomplete="nofill", placeholder="ex: John...") }}
+                    {{ form.email.label }}
+                    {{ form.email(autocomplete="nofill", placeholder="email@example.com") }}
+                    {{ form.phone.label }}
+                    {{ form.phone(autocomplete="nofill", placeholder="ex: 03608307") }}
+                    {{ form.message.label }}
+                    {{ form.message(autocomplete="nofill", placeholder="votre message...") }}
+                    <br><br>
+                    {% with message = get_flashed_messages() %}
+                        {% if message %}
+                            {% for i in message %}
+                                <h3>{{ i }}</h3>
+                            {% endfor %}
+                        {% endif %}
+                        <br>
+                    {% endwith %}
+                    {{ form.submit }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
