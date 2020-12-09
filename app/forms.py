@@ -45,7 +45,7 @@ class AdminLogin(FlaskForm):
 
 class AddProduct(FlaskForm):
     name = StringField("Nom du Produit", [DataRequired()])
-    categorie = StringField("Categorie", [DataRequired()])
+    categ = StringField("Categorie", [DataRequired()])
     barcode = StringField("Barcode", [DataRequired()])
     quantity = StringField("Quantity", [DataRequired()])
     ent_type = StringField("Entreprise", [DataRequired()], render_kw={'readonly': True})

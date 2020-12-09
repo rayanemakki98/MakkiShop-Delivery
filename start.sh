@@ -1,6 +1,6 @@
 export FLASK_ENV=development
 
-pip freeze < requirements.txt
+pip freeze > requirements.txt
 
 export FLASK_APP=run.py
 

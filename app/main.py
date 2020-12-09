@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 from flask import Blueprint, render_template, redirect, url_for, flash
-from flask_security import logout_user
+from flask_login import logout_user
 from app import db, mail
 from app.forms import ContactForm
 from app.models import Contacts, News

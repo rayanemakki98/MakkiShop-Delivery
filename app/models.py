@@ -1,4 +1,4 @@
-from flask_security import UserMixin
+from flask_login import UserMixin
 from app import db, create_app
 
 
@@ -102,20 +102,25 @@ class Product(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
-    categorie = db.Column(db.String(64), nullable=False)
+    categ = db.Column(db.String(64), nullable=False)
     barcode = db.Column(db.String(16), nullable=False)
     quantity = db.Column(db.String(10), nullable=False)
     ent_type = db.Column(db.String(64), nullable=False)
     created = db.Column(db.String(32), nullable=False)
 
+    def __init__(self, name, categ, barcode, quantity, ent_type, created):
+        self.name = name
+        self.categ = categ
+        self.barcode = barcode
+        self.quantity = quantity
+        self.ent_type = ent_type
+        self.created = created
+
     def __repr__(self):
         return f'id: {self.id}, ' \
                f'product_name: {self.name}, ' \
-               f'categorie: {self.categorie}, ' \
+               f'categorie: {self.categ}, ' \
                f'barcode: {self.barcode}, ' \
                f'quantity: {self.quantity}, ' \
                f'Enteprise Type: {self.ent_type}, ' \
                f'created: {self.created}'
-
-
-db.create_all(app=create_app())

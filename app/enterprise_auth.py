@@ -84,8 +84,9 @@ def signup_post():
                             ))
 
 
+
 @entauth.route('/admin/profile/<name>/<pays>/<ville>/<type>', methods=['POST'])
-def addProduct(name, pays, ville, type):
+def addProductPost(name, pays, ville, type):
 
     add_product = AddProduct()
 
@@ -94,7 +95,7 @@ def addProduct(name, pays, ville, type):
     if search:
         flash('product already exist!')
         return redirect(url_for(
-            'entbp.myStore',
+            'entbp.addProduct',
             name=current_user.ent_name,
             pays=current_user.ent_country,
             ville=current_user.ent_city,
@@ -103,17 +104,17 @@ def addProduct(name, pays, ville, type):
     else:
         new_product = Product(
             name=add_product.name.data,
-            categorie=add_product.categorie.data,
+            categ=add_product.categ.data,
             barcode=add_product.barcode.data,
             quantity=add_product.quantity.data,
             ent_type=add_product.ent_type.data,
-            created=dt.now()
+            created=dt.utcnow()
         )
 
         db.session.add(new_product)
         db.session.commit()
         return redirect(url_for(
-            'entbp.myStore',
+            'entbp.addProduct',
             name=current_user.ent_name,
             pays=current_user.ent_country,
             ville=current_user.ent_city,

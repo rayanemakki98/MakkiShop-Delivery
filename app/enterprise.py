@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask_security import login_required, current_user
+from flask_login import login_required, current_user
 from datetime import datetime as dt
 from app.models import Admin, Product
 from app.vars import *
@@ -53,7 +53,7 @@ def profile(name, pays, ville):
 
 @entbp.route('/admin/profile/<name>/<pays>/<ville>/<type>')
 @login_required
-def myStore(name, pays, ville, type):
+def addProduct(name, pays, ville, type):
     add_product = AddProduct()
 
     product = Product.query.filter_by(ent_type=current_user.ent_type).all()

@@ -7,13 +7,13 @@
 
 {% block content %}
     <div class="header">
-      <h1>Bonjour, {{ user.ent_director }}!</h1>
-      <p>{{ user.ent_name }}</p>
+      <h1>{{ user.ent_name }}</h1>
+      <p>Bonjour {{ user.ent_director }}!</p>
         <img src="{{ url_for('static', filename='img/img_avatar.png') }}" alt="avatar">
     </div>
 
     <div class="navbar">
-      <a href="{{ url_for('entbp.myStore', name=current_user.ent_name, pays=current_user.ent_country,
+      <a href="{{ url_for('entbp.addProduct', name=current_user.ent_name, pays=current_user.ent_country,
               ville=current_user.ent_city, type=current_user.ent_type) }}">Mon Magasin En ligne</a>
       <a style="cursor: pointer;" onclick="openSearch()">Ajouter Un Produit</a>
         <a href="#">

@@ -65,3 +65,4 @@ def create_app():
 
     return app
 
+db.create_all(app=create_app())

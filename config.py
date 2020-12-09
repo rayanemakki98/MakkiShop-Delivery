@@ -17,7 +17,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
 
     #DATABASE
-    SQLALCHEMY_DATABASE_URI = "postgres://postgres:Gloyane@160298@localhost:5432/makkidb"
+    #SQLALCHEMY_DATABASE_URI = "postgres://postgres:Gloyane@160298@localhost:5432/makkidb"
 
     # DATABASE VARIABLES
     DB_HOST = 'localhost'
